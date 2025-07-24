@@ -1,104 +1,120 @@
-/* CSS Variables for Theme Management */
+/* App.css - Minimal and Modern Todo UI, light theme */
+
+/* Main palette */
 :root {
-  /* Light theme colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
-  --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
+  --color-primary: #1976d2; /* blue */
+  --color-secondary: #424242; /* dark gray */
+  --color-accent: #ffb300; /* amber */
+  --color-bg: #fff;
+  --color-bg-alt: #f8f9fa;
+  --color-text: #222;
+  --color-border: #e0e0e0;
 }
 
-[data-theme="dark"] {
-  /* Dark theme colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
-  --text-primary: #ffffff;
-  --text-secondary: #61dafb;
-  --border-color: #404040;
-  --button-bg: #0056b3;
-  --button-text: #ffffff;
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Inter', 'Segoe UI', 'Roboto', Arial, sans-serif;
+  min-height: 100vh;
+}
+
+/* Remove native form appearance */
+input, button {
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+input[type="text"] {
+  background: #fff;
+  color: var(--color-text);
 }
 
 .App {
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+}
+
+.App header {
   text-align: center;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  border-bottom: 1.5px solid var(--color-border);
+  background: var(--color-bg-alt);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App h1 {
+  margin: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.App main {
+  transition: box-shadow 0.18s;
+  /* Card styles in inline */
+}
+
+.App ul {
+  padding: 0;
+  margin: 0;
+}
+
+/* Todo Item */
+.App li {
+  transition: background 0.16s;
+}
+
+.App li:hover {
+  background: var(--color-bg-alt);
+}
+
+input[type="checkbox"] {
+  accent-color: var(--color-accent);
+}
+
+/* Buttons */
+button {
+  outline: none;
+}
+
+button:disabled, [aria-disabled='true'] {
+  filter: grayscale(0.23);
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Filter bar buttons */
+.App footer button {
+  margin-right: 6px;
+}
+
+/* Placeholder text color */
+input[type="text"]::-webkit-input-placeholder {
+  color: #909090;
+  opacity: 1;
+}
+input[type="text"]::-moz-placeholder {
+  color: #909090;
+  opacity: 1;
+}
+input[type="text"]:-ms-input-placeholder {
+  color: #909090;
+  opacity: 1;
+}
+input[type="text"]::placeholder {
+  color: #909090;
+  opacity: 1;
+}
+
+/* Responsive design for mobile devices */
+@media (max-width: 600px) {
+  .App main {
+    max-width: 98vw !important;
+    padding: 10px 2px 18px 2px !important;
+  }
+  .App header {
+    padding: 2rem 0 1rem 0 !important;
   }
 }
 
-.App-header {
-  background-color: var(--bg-secondary);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease;
-  position: relative;
-}
-
-.App-link {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
-}
-
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  opacity: 0.9;
-}
-
-.theme-toggle:active {
-  transform: translateY(0);
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Responsive design for mobile */
-@media (max-width: 768px) {
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 12px;
-  }
+/* Remove scroll bar look on mobile */
+::-webkit-scrollbar {
+  width: 0.5em;
+  background: transparent;
 }
